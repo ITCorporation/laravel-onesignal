@@ -197,19 +197,13 @@ class OneSignalClient
      * @param array $parameters
      * @return mixed
      */
-    public function sendNotificationIos($tokens = []){
+    public function sendNotificationIos($parameters = []){
         $this->requiresAuth();
         $this->usesJSON();
-
-        // Make sure to use app_id
-        $parameters['app_id'] = $this->appId;
-
-            $parameters['include_ios_tokens'] = $tokens;
 
         $parameters = array_merge($parameters, $this->additionalParams);
 
         $this->headers['body'] = json_encode($parameters);
-        $this->headers['buttons'] = json_encode($parameters);
         $this->headers['verify'] = false;
         return $this->post(self::ENDPOINT_NOTIFICATIONS);
     }
@@ -219,19 +213,13 @@ class OneSignalClient
      * @param array $parameters
      * @return mixed
      */
-    public function sendNotificationAndroid($tokens = []){
+    public function sendNotificationAndroid($parameters = []){
         $this->requiresAuth();
         $this->usesJSON();
-
-        // Make sure to use app_id
-        $parameters['app_id'] = $this->appId;
-
-            $parameters['include_android_reg_ids'] = $tokens;
 
         $parameters = array_merge($parameters, $this->additionalParams);
 
         $this->headers['body'] = json_encode($parameters);
-        $this->headers['buttons'] = json_encode($parameters);
         $this->headers['verify'] = false;
         return $this->post(self::ENDPOINT_NOTIFICATIONS);
     }
